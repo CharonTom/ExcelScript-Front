@@ -20,7 +20,12 @@ function App() {
   useEffect(() => {
     const fetchResults = async () => {
       try {
+        // On effectue une requête GET vers l'API REST pour récupérer les données de consommation d'énergie
+
         const response = await axios.get("http://localhost:5000/results");
+
+        // Puis on les stocks dans le state "results"
+
         setResults(response.data);
       } catch (error) {
         console.error(
@@ -32,7 +37,13 @@ function App() {
 
     fetchResults();
   }, []);
-  console.log(results);
+
+  // Configuration des données pour pouvoir les afficher.
+
+  const total =
+    parseFloat(results.otherPower) +
+    parseFloat(results.saturdayPower) +
+    parseFloat(results.weekPower);
 
   const Chartdata = [
     {
@@ -43,21 +54,25 @@ function App() {
     { name: "le reste", Energie: parseFloat(results.otherPower) },
   ];
 
+  // Puis on retourne notre page html avec les données récupérées.
   return (
     <main className="main" style={{ textAlign: "center" }}>
       <h1>Consommation d'énergie du 1er Avril au 28 Février 2022</h1>
       <div>
         <p>
-          Puissance accumulée du lundi au vendredi (8h-20h) :{" "}
+          Energie accumulée du lundi au vendredi (8h-20h) :{" "}
           <span>{results.weekPower} kWh</span>{" "}
         </p>
         <p>
-          Puissance accumulée le samedi (8h-20h) :{" "}
+          Energie accumulée le samedi (8h-20h) :{" "}
           <span>{results.saturdayPower} kWh</span>{" "}
         </p>
         <p>
-          Puissance accumulée le reste du temps :{" "}
+          Energie accumulée le reste du temps :{" "}
           <span>{results.otherPower} kWh</span>{" "}
+        </p>
+        <p>
+          Energie Total : <span>{total} kWh</span>{" "}
         </p>
       </div>
       <div>
