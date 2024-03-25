@@ -57,7 +57,7 @@ function App() {
   // Puis on retourne notre page html avec les données récupérées.
   return (
     <main className="main" style={{ textAlign: "center" }}>
-      <h1>Consommation d'énergie du 1er Avril au 28 Février 2022</h1>
+      <h1>Consommation d'énergie du 1er avril 2020 au 28 février 2022</h1>
       <div>
         <p>
           Energie accumulée du lundi au vendredi (8h-20h) :{" "}
@@ -72,7 +72,7 @@ function App() {
           <span>{results.otherPower} kWh</span>{" "}
         </p>
         <p>
-          Energie Total : <span>{total} kWh</span>{" "}
+          Energie totale : <span>{total} kWh</span>{" "}
         </p>
       </div>
       <div>
